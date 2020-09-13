@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Google font -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <title>RRF Bank</title>
+</head>
+
+<body>
+
+
+    <section class="section-login" id="section_login">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="login-heading text-center">
+                        <h1>Welcome to RRF bank</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6 offset-3">
+                    <div class="login-form mt-5">
+                        <h2 class="login-form__heading mb-3">Login</h2>
+                        <input class="form-control mb-3" type="text" name="name" placeholder="Name">
+                        <input class="form-control mb-3" type="password" name="password" placeholder="Password">
+                        <button id="login" class="btn btn-success">Login</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="section-transaction" id="section_transaction">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-md-4">
+                    <div class="deposit status">
+                        <h5>Deposit</h5>
+                        <h2>$<span id="currentDeposit">00</span></h2>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="withdraw status">
+                        <h5>Withdraw</h5>
+                        <h2>$00</h2>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="balance status">
+                        <h5>Balance</h5>
+                        <h2>$<span id="currentBalance">1240</span></h2>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="deposit-withdraw-form">
+                        <h4>Deposit</h4>
+                        <input id="depositAmount" class="form-control mb-3" type="text" placeholder="$ amount you want to deposit">
+                        <button id="addDeposit" class="btn btn-success">Deposit</button>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="deposit-withdraw-form">
+                        <h4>Withdraw</h4>
+                        <input id="withdrawAmount" class="form-control mb-3" type="text" placeholder="$ amount you want to withdraw">
+                        <button id="addWithdraw" class="btn btn-success">Withdraw</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <script>
+        // login form
+        const loginButton = document.getElementById("login");
+        loginButton.addEventListener('click', function () {
+            const loginSection = document.getElementById("section_login");
+            loginSection.style.display = "none";
+
+            const transactionSection = document.getElementById("section_transaction");
+            transactionSection.style.display = "block";
+        });
+
+        // Transaction box
+
+        const depositButton = document.getElementById("addDeposit");
+        depositButton.addEventListener("click", function(){
+
+            const depositNumber = getInputNumber("depositAmount");
+    
+            
+            updateSpanBalance("currentDeposit", depositNumber)
+            updateSpanBalance("currentBalance", depositNumber);
+
+            document.getElementById("depositAmount").value = "";
+
+        })
+
+        const withdrawButton = document.getElementById("addWithdraw");
+        withdrawButton.addEventListener("click", function(){
+            getInputNumber("withdrawAmount");
+        })
+
+        function getInputNumber(id){
+            const amount = document.getElementById(id).value;
+            const amountNumber = parseFloat(amount);
+            return amountNumber;
+        }
+        
+        function updateSpanBalance(id, depositNumber){
+            const currentBalance = document.getElementById(id).innerText;
+            const currentBalanceNumber = parseFloat(currentBalance);
+            const totalBalance = currentBalanceNumber + depositNumber;
+            document.getElementById(id).innerText = totalBalance;
+        }
+
+    </script>
+
+    <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> -->
+</body>
+
+</html>

@@ -1,0 +1,45 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-size: 16px;
+    font-family: 'Roboto', sans-serif;
+    padding: 100px;
+}
+
+
+/* login form */
+.login-form,
+.deposit-withdraw-form {
+    padding: 50px;
+    box-shadow: 0px 5px 20px rgba(0, 0, 0, .2);
+    border-radius: 20px;
+}
+
+.login-form__heading {
+    font-size: 20px;
+    text-transform: uppercase;
+}
+
+
+/* Transaction area */
+#section_transaction {
+    display: none;  
+}
+.status {
+    padding: 20px;
+    color: #fff;
+    border-radius: 10px;
+}
+.deposit {
+    background-color: #5e4ec1;
+}
+.withdraw {
+    background-color: #f09672;
+}
+.balance {
+    background-color: #ef9c0b;
+}
